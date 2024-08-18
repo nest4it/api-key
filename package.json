@@ -42,7 +42,7 @@
     "@semantic-release/release-notes-generator": "^14.0.1",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.4.5",
-    "semantic-release": "^24.1.0",
+    "semantic-release": "^21.0.7",
     "ts-toolbelt": "^9.6.0",
     "tsx": "^3.12.8",
     "typescript": "^5.1.6"
