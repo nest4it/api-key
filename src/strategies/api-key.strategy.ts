@@ -6,7 +6,7 @@ import { ApiKeyService } from "../api-key.service";
 import type { Function } from "ts-toolbelt";
 import type { ApiKeyModuleConfig } from "../models/config";
 import { MODULE_OPTIONS_TOKEN } from "../api-key.configure-module";
-import { ApiKeyError } from "@/errors";
+import { ApiKeyError } from "../errors";
 
 type ValidateFn = (apiKey: string, done: Function.Function) => void;
 

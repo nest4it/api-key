@@ -6,4 +6,8 @@ export const apiKeyConfig = z.object({
   apiKeyHeaderPrefix: z.string().default(""),
 });
 
-export type ApiKeyModuleConfig = z.infer<typeof apiKeyConfig>;
+export type ApiKeyModuleConfig = {
+  secret: string;
+  apiKeyHeader: string;
+  apiKeyHeaderPrefix?: string;
+};
