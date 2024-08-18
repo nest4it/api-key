@@ -35,6 +35,11 @@ jobs:
       - name: Set up NPM for publishing
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
+      - name: Debug NPM Token
+        run: echo "${NPM_TOKEN:0:4}****"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Publish with Semantic Release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
