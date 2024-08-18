@@ -1,5 +1,5 @@
 
-import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { createProviders, type JwtProvider } from "./utils";
 import type { ApiKeyModuleConfig } from "./models/config";
 import { MODULE_OPTIONS_TOKEN } from "./api-key.configure-module";

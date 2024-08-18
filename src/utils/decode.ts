@@ -1,5 +1,5 @@
 import { verify } from "jsonwebtoken";
-import { authenticatedClient, type AuthenticatedClient } from "../models/authenticated-client";
+import { validateAuthenticatedClient, type AuthenticatedClient } from "../models/authenticated-client";
 import { ApiKeyExpiredError } from "../errors";
 
 export const toSeconds = (time: number) => Math.floor(time / 1000);
@@ -13,7 +13,7 @@ export const createVerifyJwtToken =
   (secret: string) => async (token: string) => {
     const payload = verify(token, secret, { ignoreExpiration: false });
 
-    const parsedToken = await authenticatedClient.parseAsync(payload);
+    const parsedToken = validateAuthenticatedClient<AuthenticatedClient>(payload);
 
     if (isJwtTokenExpired(parsedToken)) {
       throw new ApiKeyExpiredError("Token has expired");
