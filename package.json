@@ -8,8 +8,7 @@
     "build": "tsc"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   },
   "repository": {
     "url": "https://github.com/nest4it/api-key"
