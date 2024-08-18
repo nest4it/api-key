@@ -32,15 +32,10 @@
     "url": "https://github.com/nest4it/email-module/issues",
     "email": "info@n4it.nl"
   },
-  "license": "ISC",
+  "license": "GPL-3.0",
   "devDependencies": {
-    "@semantic-release/commit-analyzer": "^10.0.1",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/npm": "^10.0.4",
-    "@semantic-release/release-notes-generator": "^11.0.4",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.4.5",
-    "semantic-release": "^21.0.7",
     "ts-toolbelt": "^9.6.0",
     "tsx": "^3.12.8",
     "typescript": "^5.1.6"
