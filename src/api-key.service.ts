@@ -1,21 +1,19 @@
 
 import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
-import { createJwtToken } from "./utils/encode";
-import { createVerifyJwtToken } from "./utils/decode";
+import { createProviders, type JwtProvider } from "./utils";
 import type { ApiKeyModuleConfig } from "./models/config";
 import { MODULE_OPTIONS_TOKEN } from "./api-key.configure-module";
+import { ApiKeyError } from "./errors";
 
 @Injectable()
 export class ApiKeyService {
-  private createJwtToken: ReturnType<typeof createJwtToken>;
-  private verifyJwtToken: ReturnType<typeof createVerifyJwtToken>;
+  private jwtProvider: JwtProvider;
 
   constructor(
     @Inject(MODULE_OPTIONS_TOKEN)
     private options: ApiKeyModuleConfig,
   ) {
-    this.createJwtToken = createJwtToken(this.options.secret);
-    this.verifyJwtToken = createVerifyJwtToken(this.options.secret);
+    this.jwtProvider = createProviders(this.options.secret);
   }
 
   /**
@@ -25,7 +23,7 @@ export class ApiKeyService {
    * @returns a jwt token
    */
   async createApiKey(data: Record<string, unknown>, expiresInSeconds?: number) {
-    return this.createJwtToken(data, expiresInSeconds);
+    return this.jwtProvider.createJwtToken(data, expiresInSeconds);
   }
 
   /**
@@ -34,8 +32,8 @@ export class ApiKeyService {
    * @returns the parsed token
    */
   async verifyApiKey(token: string) {
-    return this.verifyJwtToken(token).catch((err) => {
-      throw new UnauthorizedException({
+    return this.jwtProvider.verifyJwtToken(token).catch((err) => {
+      throw new ApiKeyError("An error occurred while veryfing a token", {
         cause: err,
       });
     });
