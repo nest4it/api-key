@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   release:
     name: Release
@@ -13,11 +17,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
-    environment: prod
-    env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
