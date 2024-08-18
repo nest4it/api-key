@@ -1,6 +1,6 @@
 {
   "name": "@n4it/api-key",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Package to manage API Keys in NestJS.",
   "main": "./dist/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "access": "public"
   },
   "repository": {
-    "url": "https://github.com/nest4it/api-token-module"
+    "url": "https://github.com/nest4it/api-key"
   },
   "files": [
     "./dist"
@@ -29,7 +29,7 @@
   ],
   "author": "Robert-Jan Kuyper <info@n4it.nl> (https://n4it.nl)",
   "bugs": {
-    "url": "https://github.com/nest4it/email-module/issues",
+    "url": "https://github.com/nest4it/api-key/issues",
     "email": "info@n4it.nl"
   },
   "license": "GPL-3.0",

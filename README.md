@@ -19,7 +19,7 @@ import { Module } from "@nestjs/common";
 
 @Module({
   imports: [
-    ApiKeyModule.forRoot({
+    ApiKeyModule.register({
       secret: "your-secret-key",  // Replace with your actual secret
       apiKeyHeader: "x-api-key",  // The header to look for the API key
     }),
