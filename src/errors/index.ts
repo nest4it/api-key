@@ -9,3 +9,9 @@ export class ApiKeyExpiredError extends ApiKeyError {
     super(message, options);
   }
 }
+
+export class ApiKeyValidationError extends ApiKeyError {
+  constructor(message: string, options?: ErrorOptions) {
+    super(message, options);
+  }
+}
