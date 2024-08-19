@@ -6,6 +6,7 @@ import { ApiKeyService } from "../api-key.service";
 import type { Function } from "ts-toolbelt";
 import type { ApiKeyModuleConfig } from "../models/config";
 import { MODULE_OPTIONS_TOKEN } from "../api-key.configure-module";
+import { DEFAULTS } from "../constants/defaults";
 
 type ValidateFn = (apiKey: string, done: Function.Function) => void;
 
@@ -19,7 +20,7 @@ export class ApiKeyStrategy extends PassportStrategy(
   ) {
     super(
       {
-        header: options.apiKeyHeader,
+        header: options.apiKeyHeader ?? DEFAULTS.apiKeyHeader,
         prefix: options.apiKeyHeaderPrefix,
       },
       true,
