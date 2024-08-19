@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import Strategy from "passport-headerapikey";
 import { API_KEY_MODULE_STRATEGY } from "../constants";
@@ -6,7 +6,6 @@ import { ApiKeyService } from "../api-key.service";
 import type { Function } from "ts-toolbelt";
 import type { ApiKeyModuleConfig } from "../models/config";
 import { MODULE_OPTIONS_TOKEN } from "../api-key.configure-module";
-import { ApiKeyError } from "../errors";
 
 type ValidateFn = (apiKey: string, done: Function.Function) => void;
 
@@ -33,7 +32,7 @@ export class ApiKeyStrategy extends PassportStrategy(
       .verifyApiKey(apiKey)
       .then((user) => done(null, user))
       .catch((err) => {
-        done(new ApiKeyError("Couldn't verify token", {
+        done(new UnauthorizedException({
           cause: err,
         }), null);
       });

@@ -1,7 +1,2 @@
 */src
-*/go
-.gitlab-ci.yml
-go.mod
-go.sum
-main.go
 tsconfig.json
