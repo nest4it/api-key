@@ -14,6 +14,7 @@ export type ApiKeyModuleConfig = {
    * The prefix to add to the header value.
    */
   apiKeyHeaderPrefix?: string;
+
   /**
    * expressed in seconds or a string describing a time span zeit/ms. Eg: 60, "2 days", "10h", "7d"
    */

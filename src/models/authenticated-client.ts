@@ -16,7 +16,7 @@ export const isNonEmptyString = (value: unknown): value is string =>
 
 export const validateAuthenticatedClient = <T>(client: unknown): AuthenticatedClient<T> => {
   if (!isObject(client)) {
-    throw new ApiKeyValidationError('Invalid client');
+    throw new ApiKeyValidationError('Invalid token');
   }
 
   if (!isNumber(client?.exp)) {
