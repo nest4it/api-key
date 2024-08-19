@@ -1,6 +1,6 @@
 import { ApiKeyValidationError } from "../errors";
 
-export type AuthenticatedClient = {
+export type AuthenticatedClient<T = Record<string, unknown>> = T & {
   exp: number;
   jti: string;
   iat: number;
@@ -14,22 +14,22 @@ export const isNumber = (value: unknown): value is number => typeof value === 'n
 export const isNonEmptyString = (value: unknown): value is string =>
   typeof value === 'string' && value !== '';
 
-export const validateAuthenticatedClient = <T>(client: unknown): T & AuthenticatedClient => {
+export const validateAuthenticatedClient = <T>(client: unknown): AuthenticatedClient<T> => {
   if (!isObject(client)) {
     throw new ApiKeyValidationError('Invalid client');
   }
 
-  if (!client.exp || !isNumber(client.exp)) {
+  if (!isNumber(client?.exp)) {
     throw new ApiKeyValidationError('Expiration value is invalid');
   }
 
-  if (!client.jti || !isNonEmptyString(client.jti)) {
+  if (!isNonEmptyString(client?.jti)) {
     throw new ApiKeyValidationError('Jti value is invalid');
   }
 
-  if (!client.iat || !isNumber(client.iat)) {
+  if (!isNumber(client?.iat)) {
     throw new ApiKeyValidationError('Issued at value is invalid');
   }
 
-  return client as T & AuthenticatedClient;
+  return client as AuthenticatedClient<T>;
 }

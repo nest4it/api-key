@@ -15,7 +15,7 @@ export type ApiKeyModuleConfig = {
    */
   apiKeyHeaderPrefix?: string;
   /**
-   * The time in seconds that the token will be valid for.
+   * expressed in seconds or a string describing a time span zeit/ms. Eg: 60, "2 days", "10h", "7d"
    */
   expiresIn?: number;
 };

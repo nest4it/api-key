@@ -21,7 +21,7 @@ export class ApiKeyStrategy extends PassportStrategy(
     super(
       {
         header: options.apiKeyHeader ?? DEFAULTS.apiKeyHeader,
-        prefix: options.apiKeyHeaderPrefix,
+        prefix: options.apiKeyHeaderPrefix ?? DEFAULTS.apiKeyHeaderPrefix,
       },
       true,
       async (apiKey: string, done: ValidateFn) => this.validate(apiKey, done),

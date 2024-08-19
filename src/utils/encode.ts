@@ -7,7 +7,7 @@ export const createJwtData = <T extends Record<string, unknown>>(data: T) => ({
   jti: randomUUID(),
 });
 
-export const createSignJwtToken = (secret: string, expiresIn: number) => <T extends Record<string, unknown>>(data: T) => {
+export const createSignJwtToken = (secret: string) => <T extends Record<string, unknown>>(data: T, expiresIn: string | number) => {
   return sign(createJwtData(data), secret, {
     expiresIn: expiresIn ?? DEFAULTS.expiresIn,
   });

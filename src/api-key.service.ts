@@ -19,11 +19,11 @@ export class ApiKeyService {
   /**
    * 
    * @param data user defined data to be stored in the token, such as policy, user id, etc.
-   * @param expiresInSeconds time in seconds for the token to expire, defaults to 30 days
+   * @param expiresIn expressed in seconds or a string describing a time span zeit/ms. Eg: 60, "2 days", "10h", "7d"
    * @returns a jwt token
    */
-  async createApiKey(data: Record<string, unknown>, expiresInSeconds?: number) {
-    return this.jwtProvider.createJwtToken(data, expiresInSeconds);
+  async createApiKey(data: Record<string, unknown>, expiresIn?: string | number) {
+    return this.jwtProvider.createJwtToken(data, expiresIn ?? this.options.expiresIn);
   }
 
   /**
