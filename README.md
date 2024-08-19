@@ -42,7 +42,8 @@ export class AppService {
 
   public createToken() {
     return this.apiKeyService.createApiKey({
-      policies: ["user:manage"],  // Define your policies here
+      policies: ["user:manage"],  // Define your custom claims here
+      role: "admin"
     });
   }
 }
