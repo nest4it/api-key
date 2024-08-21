@@ -11,7 +11,7 @@ npm install @n4it/api-key
 ## Usage
 
 ### Importing and Configuring the Module
-First, import the ApiKeyModule into your NestJS module and configure it using the forRoot method. This method requires a secret for signing the JWT tokens and an apiKeyHeader for identifying the API key in requests.
+First, import the ApiKeyModule into your NestJS module and configure it using the `register` method. This method requires a secret for signing the JWT tokens and an apiKeyHeader for identifying the API key in requests.
 
 ```typescript
 import { ApiKeyModule } from "@n4it/api-key";
@@ -59,7 +59,8 @@ import { API_KEY_MODULE_STRATEGY } from "@n4it/api-key";
 
 @Injectable()
 export class AuthGuard extends PassportAuthGuard([
-  API_KEY_MODULE_STRATEGY,  // Add other strategies if necessary
+  API_KEY_MODULE_STRATEGY,  // inject the strategy in a passport auth guard
+  // other auth mechanisms can be added here as well...
 ]) {
   canActivate(context: ExecutionContext) {
     return super.canActivate(context);
@@ -108,7 +109,7 @@ export class ProtectedController {
 ```
 
 ## License
-This project is licensed under theGNU General Public License v3.0 - see the LICENSE file for details.
+This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details.
 
 ## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request or open an issue on GitHub.
